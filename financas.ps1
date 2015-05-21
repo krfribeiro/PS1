@@ -14,18 +14,18 @@ while($ie.ReadyState -ne 4) {start-sleep -m 100}
 # ALTERAR AQUI OS DADOS PARA LOGIN #
 
 $ie.document.getElementById('username').value = "NIF"
-$ie.document.getElementById('password').value = "PASSWORD"
+$ie.document.getElementById('password').value = "Password"
 
 # NAO ALTERAR NADA A PARTIR DAQUI :D #
 
 $ie.document.getElementById('sbmtLogin').Click()
-start-sleep -m 100
+start-sleep -m 5000
 $ie.document.getElementById('pesquisar').Click()
-start-sleep -m 100
+start-sleep -m 1000
 ($ie.Document.links | ? { $_.href -like '*detalheDeclaracaoIRS*' }).Click()
-start-sleep -m 100
+start-sleep -m 1000
 $estado = $ie.Document.getElementById('dataRececao').IHTMLInputElement_value
 if ($estado -notlike 'REEMBOLSO EMITIDO') {
     echo "You're still poor! - $ESTADO " }
 Else { echo "You're probably rich! - $ESTADO" }
-$ie.Quit() 
+#$ie.Quit() 
